@@ -55,6 +55,32 @@ printf "[$COLOUR$CHARGE%% $NON$BATSTT]"
 #printf "[$NON$BATSTT $COLOUR$CHARGE%%]" 
 }
 
+# CPU Temperature
+vartemp_status(){
+# This path is for Raspberry Pi, maybe on another devices it will be different
+VARTEMP=$(bc <<< "scale=0;`cat /sys/class/thermal/thermal_zone0/temp`/1000")
+TEMP=$(bc <<< "scale=1;`cat /sys/class/thermal/thermal_zone0/temp`/1000")
+NON='\001\e[0m\002'
+RED='\001\e[1;31m\002'
+GRN='\001\e[1;32m\002'
+YEL='\001\e[1;33m\002'
+COLOUR="$GRN"
+
+if [ $VARTEMP -ge "65" ]
+then
+  COLOUR="$RED"
+fi
+if [ $VARTEMP -gt "55" ]
+then
+  COLOUR="$YEL"
+fi
+if [ $VARTEMP -le "55" ]
+then
+  COLOUR="$GRN"
+fi
+printf "[${COLOUR}Temp:${TEMP}${NON}]"
+} #end of vartemp_status
+
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
@@ -66,8 +92,8 @@ then # you are root, set red colour prompt
 # with \[ and ends with \]. The complete colorcode seqquence for one color should look like
 # \[\033[1;34m\] 
 # root is marked with color red, just as dangerous poisonous beasts in nature are often marked in red.
-PS1='$(battery_status)\[\033[0;31m\]\u\[\033[1;31m\]@\h\[\033[1;34m\] \w\[\033[0m\]\$ '
+PS1='$(vartemp_status)$(battery_status)\[\033[0;31m\]\u\[\033[1;31m\]@\h\[\033[1;34m\] \w\[\033[0m\]\$ '
 # normal users become other colorcodes
 else # normal user
-PS1='$(battery_status)\[\033[1;36m\]\u\[\033[1;31m\]@\h\[\033[1;34m\] \w\[\033[0m\]\$ '
+PS1='$(vartemp_status)$(battery_status)\[\033[1;36m\]\u\[\033[1;31m\]@\h\[\033[1;34m\] \w\[\033[0m\]\$ '
 fi
