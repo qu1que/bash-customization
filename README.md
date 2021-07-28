@@ -22,3 +22,8 @@ Using havoc as a terminal app will work without problems.
 However, if you use fingerterm, you can move the $BATSTT value before the percentage value.
 This problem will ocur on SailfishOS/fingerterm only localy on the device. You can use this line instead:
 
+NEW ADDITION:
+
+Based on JimKnopfIoT's original script, and basically copying his code, I have managed to adapt it to also display the CPU temperature. It is tested on several Raspberry Pi models. I don't know if it would work on other types of devices, but it is very likely, simply by changing the initial path, just like the original script.
+
+<img src="img2.png" width="500" align="center"> 
