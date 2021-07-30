@@ -24,6 +24,6 @@ This problem will ocur on SailfishOS/fingerterm only localy on the device. You c
 
 NEW ADDITION:
 
-Based on JimKnopfIoT's original script, and basically copying his code, I have managed to adapt it to also display the CPU temperature. It is tested on several Raspberry Pi models. I don't know if it would work on other types of devices, but it is very likely, simply by changing the initial path, just like the original script.
+Based on JimKnopfIoT's original script, and basically copying and adapting his/her code, I have managed to adapt it to also display the CPU temperature. It is tested on several Raspberry Pi models. I don't know if it would work on other types of devices, but it is very likely, simply by changing the initial path, just like the original script.
 
 <img src="img2.png" width="500" align="center"> 
