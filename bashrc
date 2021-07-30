@@ -64,21 +64,27 @@ NON='\001\e[0m\002'
 RED='\001\e[1;31m\002'
 GRN='\001\e[1;32m\002'
 YEL='\001\e[1;33m\002'
-COLOUR="$GRN"
+BLU='\001\e[1;34m\002'
+#COLOUR="$GRN"
 
-if [ $VARTEMP -ge "65" ]
+if [ $VARTEMP -lt "35" ]
+  then
+    COLOUR="$BLU"
+fi
+if [ $VARTEMP -le "55" ]
+  then
+    COLOUR="$GRN"
+fi
+if [ $VARTEMP -gt "55" ]
+  then
+    COLOUR="$YEL"
+fi
+if [ $VARTEMP -gt "70" ]
 then
   COLOUR="$RED"
 fi
-if [ $VARTEMP -gt "55" ]
-then
-  COLOUR="$YEL"
-fi
-if [ $VARTEMP -le "55" ]
-then
-  COLOUR="$GRN"
-fi
-printf "[${COLOUR}Temp:${TEMP}${NON}]"
+
+printf "[${COLOUR}${TEMP}ºC${NON}]"
 } #end of vartemp_status
 
 # If not running interactively, don't do anything
